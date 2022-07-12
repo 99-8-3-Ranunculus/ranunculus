@@ -59,7 +59,8 @@
         let username = $("#input-username").val()
         let password = $("#input-password").val()
         let password2 = $("#input-password2").val()
-        console.log(username, password, password2)
+        let phonenumber = $("#input-phonenumber").val()
+        console.log(username, password, password2, phonenumber)
 
 
         if ($("#help-id").hasClass("is-danger")) {
@@ -97,7 +98,8 @@
             url: "/sign_up/save",
             data: {
                 username_give: username,
-                password_give: password
+                password_give: password,
+                phonenumber_give: phonenumber
             },
             success: function (response) {
                 alert("회원가입을 축하드립니다!")
@@ -124,6 +126,11 @@
     function is_password(asValue) {
         var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
         return regExp.test(asValue);
+    }
+
+    function is_phone(asValue) {
+        var regEXP = /^\d{2,3}-\d{3,4}-\d{4}$/;
+        return regEXP.test(asValue);
     }
 
 
@@ -193,8 +200,8 @@
                                 사용 가능합니다.</p>
                         </div>
 
-
                     </div>
+
                     <div id="div-sign-in-or-up" class="has-text-centered">
                         <nav class="level is-mobile">
                             <button class="level-item button is-ranunculus" onclick="sign_in()">
@@ -224,6 +231,16 @@
                                 <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
 
                             </div>
+
+                            {#전화번호#}
+                            <div class="field">
+                                <div class="control has-icons-left" style="width:100%">
+                                    <input id="input-phonenumber" class="input txtTele" type="text"
+                                           placeholder="전화번호('-'로 구분)">
+                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                </div>
+                            </div>
+
                         </div>
                         <nav class="level is-mobile">
                             <button class="level-item button is-ranunculus" onclick="sign_up()">
@@ -234,8 +251,6 @@
                             </button>
                         </nav>
                     </div>
-
-
                 </div>
             </article>
         </div>

@@ -42,22 +42,14 @@ def showReview():
 
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
-    # 회원가입
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
-    # DB에 저장
-    return jsonify({'result': 'success'})
-
-
-@app.route('/sign_up/save', methods=['POST'])
-def sign_up():
-    username_receive = request.form['username_give']
-    password_receive = request.form['password_give']
-    password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    phonenumber_receive = request.form['phonenumber_give']
     doc = {
         "username": username_receive,                               # 아이디
         "password": password_hash,                                  # 비밀번호
+        "phonenumber": phonenumber_receive,                         # 전화번호
         "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
         "profile_pic": "",                                          # 프로필 사진 파일 이름
         "profile_pic_real": "profile_pics/profile_placeholder.png", # 프로필 사진 기본 이미지
