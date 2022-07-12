@@ -17,6 +17,9 @@ def main():
 def review():
     return render_template('review.html')
 
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html')
 
 @app.route('/review/show', methods=["POST"])
 def save_review():
