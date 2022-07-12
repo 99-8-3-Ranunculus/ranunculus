@@ -1,24 +1,10 @@
-from flask import Flask, render_template, request, jsonify
-app = Flask(__name__)
+#hero_image {
+    background-image: url("https://ifh.cc/g/QLzcG4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-from pymongo import MongoClient
-client = MongoClient('mongodb+srv://frago:G8JQhmTgex80D5NV@cluster0.3pkyv7h.mongodb.net/?retryWrites=true&w=majority')
-db = client.Ranunculus
+.is-ranunculus {
+    color: pink !important;
+}
 
-
-app = Flask(__name__)
-
-
-@app.route('/')
-def main():
-    userName = "항해99"
-    return render_template("index.html", userName=userName)
-
-
-@app.route('/review')
-def review():
-    return render_template("review.html")
-
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
