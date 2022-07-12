@@ -1,0 +1,10 @@
+#hero_image {
+    background-image: url("https://ifh.cc/g/QLzcG4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.is-ranunculus {
+    color: pink !important;
+}
+

@@ -11,6 +11,7 @@
 
     <!-- CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/member.css') }}" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -27,26 +28,26 @@
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-            <img src="{{ url_for('static', filename='logo.png') }}" width="112" height="28">
+        <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='logo.png') }}" width="100" height="100">
         </a>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
+{#        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">#}
+{#            <span aria-hidden="true"></span>#}
+{#            <span aria-hidden="true"></span>#}
+{#            <span aria-hidden="true"></span>#}
+{#        </a>#}
     </div>
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button is-primary">
-                    <strong>Sign up</strong>
+                <a class="button is-ranunculus">
+                    <strong>가입하기</strong>
                 </a>
                 <a class="button is-light">
-                    Log in
+                    로그인
                 </a>
             </div>
         </div>
     </div>
-    </div>
+
 </nav>

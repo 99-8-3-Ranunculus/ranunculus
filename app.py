@@ -35,8 +35,9 @@ def login():
     return render_template('login.html', msg=msg)
 
 
+
 @app.route('/review')
-def showReview():
+def review():
     return render_template('review.html')
 
 
@@ -66,5 +67,24 @@ def check_dup():
     return jsonify({'result': 'success', 'exists': exists})
 
 
+@app.route('/review/show', methods=["POST"])
+def save_review():
+    nickNameReceive = request.form['nickNameGive']
+    contentReceive = request.form['contentGive']
+
+    doc = {
+        'nickName': nickNameReceive,
+        'content': contentReceive
+    }
+    db.class_reviews.insert_one(doc)
+    print('리뷰글 POST 요청!')
+    return jsonify({'msg': '리뷰글을 작성했습니다!'})
+
+
+@app.route("/review/show", methods=["GET"])
+def get_review():
+    review_list = list(db.class_reviews.find({}, {'_id': False}))
+    return jsonify({'reviews': review_list})
+
+
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
