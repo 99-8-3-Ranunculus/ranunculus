@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>라넌큘러스 - 원데이 클래스</title>
+    <title>몰라용 - 원데이 클래스</title>
 
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -22,84 +22,104 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <style>
-    body {
-        min-height: 100vh;
-    }
+        body {
+            min-height: 100vh;
+        }
 
-    .section {
-        padding: 1rem 1.5rem;
-        max-width: 750px;
-        margin: auto;
-    }
+        .section {
+            padding: 1rem 1.5rem;
+            max-width: 750px;
+            margin: auto;
+        }
 
-    .is-ranunculus {
-        color: pink !important;
-    }
+        .is-ranunculus {
+            color: pink !important;
+        }
 
-    .button.is-ranunculus {
-        background-color: pink;
-        border-color: transparent;
-        color: #fff !important;
-    }
+        .button.is-ranunculus {
+            background-color: pink;
+            border-color: transparent;
+            color: #fff !important;
+        }
 
-    .button.is-ranunculus.is-outlined {
-        background-color: transparent;
-        border-color: pink;
-        color: pink !important;
-    }
+        .button.is-ranunculus.is-outlined {
+            background-color: transparent;
+            border-color: pink;
+            color: pink !important;
+        }
 
-    .help {
-        color: gray;
-    }
-</style>
+        .help {
+            color: gray;
+        }
+    </style>
 
-<script>
-    // {% if msg %}
-    //     alert("{{ msg }}")
-    // {% endif %}
-    function sign_in() {
-        $.ajax({
-            type: "POST",
-            url: "/sign_in",
-            data: {
-                username_give: "",
-                password_give: ""
-            },
-            success: function (response) {
-                if (response['result'] == 'success') {
-                    $.cookie('mytoken', response['token'], {path: '/'});
+    <script>
+        // {% if msg %}
+        //     alert("{{ msg }}")
+        // {% endif %}
+        function sign_in() {
+            $.ajax({
+                type: "POST",
+                url: "/sign_in",
+                data: {
+                    username_give: "",
+                    password_give: ""
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
 
-                    alert('로그인 완료!')
-                    window.location.href = '/'
-                } else {
-                    // 로그인이 안되면 에러메시지를 띄웁니다.
-                    alert(response['msg'])
+                        alert('로그인 완료!')
+                        window.location.href = '/'
+                    } else {
+                        // 로그인이 안되면 에러메시지를 띄웁니다.
+                        alert(response['msg'])
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
 
-    function sign_up() {
-        let username = ""
-        let password = ""
-        let password2 = ""
+        function sign_up() {
+            let username = ""
+            let password = ""
+            let password2 = ""
 
-        $.ajax({
-            type: "POST",
-            url: "/sign_up/save",
-            data: {
-                username_give: username,
-                password_give: password
-            },
-            success: function (response) {
-                alert("회원가입을 축하드립니다!")
-                window.location.replace("/login")
-            }
-        });
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/save",
+                data: {
+                    username_give: username,
+                    password_give: password
+                },
+                success: function (response) {
+                    alert("회원가입을 축하드립니다!")
+                    window.location.replace("/login")
+                }
+            });
 
-    }
+        }
 
-</script>
+        function toggle_sign_up() {
+            $("#sign-up-box").toggleClass("is-hidden")
+            $("#div-sign-in-or-up").toggleClass("is-hidden")
+            $("#btn-check-dup").toggleClass("is-hidden")
+            $("#help-id").toggleClass("is-hidden")
+            $("#help-password").toggleClass("is-hidden")
+            $("#help-password2").toggleClass("is-hidden")
+        }
+
+        function is_nickname(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            return regExp.test(asValue);
+        }
+
+        function is_password(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            return regExp.test(asValue);
+        }
+
+
+    </script>
 </head>
 <body>
 
