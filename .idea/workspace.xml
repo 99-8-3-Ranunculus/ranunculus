@@ -7,6 +7,7 @@
     <list default="true" id="a4f09fb1-fd30-4d74-bedd-4aea15bcb806" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/lib/top.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lib/top.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +109,7 @@
       <updated>1657615713285</updated>
       <workItem from="1657615719277" duration="2123000" />
       <workItem from="1657617881772" duration="1804000" />
-      <workItem from="1657619739090" duration="240000" />
+      <workItem from="1657619739090" duration="609000" />
     </task>
     <servers />
   </component>
