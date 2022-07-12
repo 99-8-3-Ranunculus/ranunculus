@@ -14,6 +14,9 @@ def main():
 def showReview():
     return render_template('review.html')
 
+@app.route('/sign_in')
+def sign_in():
+    return render_template('sign_in.html')
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
