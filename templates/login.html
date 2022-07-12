@@ -59,8 +59,8 @@
         let username = $("#input-username").val()
         let password = $("#input-password").val()
         let password2 = $("#input-password2").val()
-        let phonenumber = $("#input-phonenumber").val()
-        console.log(username, password, password2, phonenumber)
+        let number = $("#input-number").val()
+        console.log(username, password, password2, number)
 
 
         if ($("#help-id").hasClass("is-danger")) {
@@ -99,7 +99,7 @@
             data: {
                 username_give: username,
                 password_give: password,
-                phonenumber_give: phonenumber
+                number_give: number
             },
             success: function (response) {
                 alert("회원가입을 축하드립니다!")
@@ -235,7 +235,7 @@
                             {#전화번호#}
                             <div class="field">
                                 <div class="control has-icons-left" style="width:100%">
-                                    <input id="input-phonenumber" class="input txtTele" type="text"
+                                    <input id="input-number" class="input txtTele" type="text"
                                            placeholder="전화번호('-'로 구분)">
                                     <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
                                 </div>
