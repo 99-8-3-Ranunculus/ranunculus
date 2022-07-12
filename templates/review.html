@@ -1,7 +1,26 @@
 {# <header>와 <nav> #}
 {% include 'lib/top.html' %}
 
-<h1>여기에 리뷰 내용</h1>
+
+<div>
+    <form id="review_form">
+        <div class="column field is-10">
+            <label class="label is-size-3">REVIEW</label>
+            <div class="control">
+                <input id="content" class="input" type="text" placeholder="멋진 리뷰를 남겨주세요!" style="height: 50px">
+            </div>
+            <div class="column">
+                <button onclick="save_review()" class="button ranunculus">글 작성</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <div id="review_contents" class="card">
+    </div>
+</div>
+
 
 {# js 와 bottom #}
 {% include 'lib/bottom.html' %}
