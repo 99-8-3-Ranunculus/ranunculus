@@ -77,25 +77,24 @@ function onGeoSucess(position) {
         .then((data) => {
             const WIcon = document.querySelector("#weather span:first-child");
             const WTalk = document.querySelector("#weather span:last-child");
-            const WMain = data.weather[0].main
-            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-            WIcon.innerHTML = `<img src="${iconUrl}">`;
-            if (WMain === "Rain") {
-                WTalk.innerText = "비오는 날 문구"
-            } else if (WMain === "Clear") {
-                WTalk.innerText = '화창한 날 문구';
-            } else if (WMain === "Claud") {
-                WTalk.innerText = '흐린 날 문구';
-            } else if (WMain === "Thunderstorm") {
-                WTalk.innerText = '천둥 번개 문구';
-            } else if (WMain === "Drizzle") {
-                WTalk.innerText = '이슬비 문구';
-            } else if (WMain === "Snow") {
-                WTalk.innerText = '눈오는 날 문구';
-            } else {
-                WTalk.innerText = "그냥 문구"
+            const WMainList =[] ;
+            const WIconDict= {
+                'Rain' : "비오는 날 출력될 문구",
+                'Drizzle' : " 이슬 비 오는날 출력될 문구",
+                'Clear' : "맑은 날 출력될 문구",
+                'Claud' : "흐린 날 출력될 문구",
+                'Thunderstorm' : "천둥번개 치는 날 출력될 문구",
+                'Snow' : "눈 오는 날 출력될 문구",
+                'Normal' : "날씨 정보가 불러와 지지 않을 때 출력 될 문구"
+            } ;
+            // 들어오는 날씨 정보 리스트
+            for (let i = 0; i < data.weather.length; i++){
+                WMainList.push(data.weather[i].main)
             }
-            console.log(data.weather[0].main);
+            console.log(WIconDict[WMainList[0]])
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather.at(1).icon}.png`;
+            WIcon.innerHTML = `<img src="${iconUrl}">`;
+            WTalk.innerText = WIconDict[WMainList[0]]
         })
 }
 
