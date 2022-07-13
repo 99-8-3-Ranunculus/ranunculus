@@ -1,6 +1,10 @@
 {# <header>와 <nav> #}
 {% include 'lib/top.html' %}
 
+<div id="weather">
+    <span></span>
+    <span></span>
+</div>
 
 <div>
     <form id="review_form">
@@ -21,6 +25,10 @@
     </div>
 </div>
 
-
+<script>
+    $(document).ready(function () {
+        show_review();
+    });
+</script>
 {# js 와 bottom #}
 {% include 'lib/bottom.html' %}
