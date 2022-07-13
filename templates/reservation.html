@@ -1,0 +1,247 @@
+{#
+<header>와
+    <nav> #}
+        {% include 'lib/top.html' %}
+
+
+        <style>
+            .field.is-horizontal {
+                margin: 0px;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 30px;
+                margin: 25px 0px 40px 0px;
+            }
+
+            .level.is-mobile .level-item:not(.is-narrow) {
+                height: 60px;
+                margin-top: 20px;
+                font-weight: bold;
+                font-size: 19px;
+            }
+
+            .button {
+                text-decoration-line: none;
+            }
+
+            .is-ranunculus {
+                color: pink !important;
+            }
+
+            .button.is-ranunculus {
+                background-color: pink;
+                border-color: transparent;
+                color: #fff !important;
+            }
+
+        </style>
+
+        <script>
+            $(document).ready(function () {
+                show_order();
+            });
+
+            function show_order() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/reservation',
+                    data: {},
+                    success: function (response) {
+                        alert(response['msg'])
+                    }
+                });
+            }
+
+
+            // $(document).ready(function () {
+            //     show_order();
+            // });
+            //
+            // function show_order() {
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: '/reservation',
+            //         data: {},
+            //         success: function (response) {
+            //             let rows = response['reservations']
+            //             for (let i = 0; i < rows.length; i++) {
+            //                 let name = rows[i]['name']
+            //                 let date = rows[i]['date']
+            //                 let time = rows[i]['time']
+            //                 let comment = rows[i]['comment']
+            //
+            //                 let temp_html = `<tr>
+            //                             <td${name}</td>
+            //                             <td>${date}</td>
+            //                             <td>${time}</td>
+            //                             <td>${comment}</td>
+            //                          </tr>`
+            //
+            //                 $('#order-box').append(temp_html)
+            //             }
+            //         }
+            //     });
+            // }
+
+            function save_order() {
+                let name = $('#name').val()
+                let date = $('#date').val()
+                let time = $('#time').val()
+                let comment = $('#comment').val()
+
+                // if (name === '') {
+                //     alert('이름을 입력하세요!')
+                // } else if (date === '') {
+                //     alert('날짜를 입력하세요!')
+                // } else if (time === '') {
+                //     alert('시간을 입력하세요!')
+                // } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/reservation',
+                    data: {name_give: name, date_give: date, time_give: time, comment_give: comment},
+                    success: function (response) {
+                        alert(response['msg'])
+                        window.location.reload()
+                    }
+                });
+            }
+
+            // }
+        </script>
+
+        <section class="section">
+            <div class="container">
+                <div class="box" style="max-width: 480px; margin:auto; padding-bottom: 50px; color:pink; ">
+                    <div class="reservation">
+                        <h1>Reservation</h1>
+                        <div class="reservation-info">
+
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                    이름
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input" id="name" type="text" placeholder="이름">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                    날짜
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input" id="date" type="date" placeholder="이름">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                    시간
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <select class="form-select" id="time">
+                                                    <option selected>-- 예약시간 --</option>
+                                                    <option value="10-12">10:00-12:00</option>
+                                                    <option value="12-14">12:00-14:00</option>
+                                                    <option value="14-16">14:00-16:00</option>
+                                                    <option value="16-18">16:00-18:00</option>
+                                                    <option value="18-20">18:00-20:00</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                    note
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input" id="comment" type="text"
+                                                       placeholder="좋아하는 향을 설명해주세요">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div-sign-in-or-up" class="has-text-centepink">
+                                <nav class="level is-mobile">
+                                    <button class="level-item button is-ranunculus" onclick="save_order()">
+                                        예약하기
+                                    </button>
+                                </nav>
+                            </div>
+
+                        </div>
+                    </div>
+        </section>
+
+        <section>
+            <table class="table" style="max-width: 480px; margin:auto">
+                <thead>
+                <tr>
+                    <th scope="col">이름</th>
+                    <th scope="col">날짜</th>
+                    <th scope="col">시간</th>
+                    <th scope="col">좋아하는 향</th>
+                </tr>
+                </thead>
+                <tbody id="order-box">
+                <tr>
+                    <td>도레미</td>
+                    <td>2022-07-14</td>
+                    <td>16:00-18:00</td>
+                    <td>ㄷㄷ</td>
+                </tr>
+                <tr>
+                    <td>임꺽정</td>
+                    <td>2022-07-14</td>
+                    <td>10:00-12:00</td>
+                    <td>ㄴㄴ</td>
+                </tr>
+                <tr>
+                    <td>세종대왕</td>
+                    <td>2022-07-14</td>
+                    <td>14:00-16:00</td>
+                    <td>ㅇㅇ</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        {# js 와 bottom #}
+        {#{% include 'lib/bottom.html' %}#}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        </body>
+        </html>
