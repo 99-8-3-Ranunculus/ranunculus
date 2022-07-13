@@ -18,3 +18,10 @@
 .greeting {
     margin-right: 50px;
 }
+
+.user_name_hi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
