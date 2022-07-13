@@ -30,6 +30,9 @@
     }
 </style>
 <script>
+    {% if msg %}
+        alert("{{ msg }}")
+    {% endif %}
     function sign_in() {
         let username = $("#input-username").val()
         let password = $("#input-password").val()
@@ -39,8 +42,7 @@
             $("#help-id-login").text("아이디를 입력해주세요.")
             $("#input-username").focus()
             return;
-        }
-        else {
+        } else {
             $("#help-id-login").text("")
         }
 
