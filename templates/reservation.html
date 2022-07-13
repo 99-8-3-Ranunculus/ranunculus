@@ -79,8 +79,6 @@
                 let name = $('#name').val()
                 let date = $('#date').val()
                 let time = $('#time :selected').text()
-
-                console.log(time)
                 let comment = $('#comment').val()
 
                 if (name === '') {
@@ -100,19 +98,32 @@
                         }
                     });
                 }
-
             }
 
-            $(function () {
-                $("#datepicker").datepicker();
+            var $j = jQuery.noConflict();
+            $j(function () {
+                $j("#date").datepicker({
+                    dateFormat: 'yy-mm-dd',
+                    minDate: 0,
+                    showOn: "both",
+                    buttonImageOnly: true,
+                    buttonImage: "calendar.gif",
+                    buttonText: "Calendar"
+                });
             });
+
 
         </script>
 
-        <p>Date: <input type="text" id="datepicker"></p>
+        <span class="icon-text">
+  <span class="icon">
+    <i class="fas fa-home"></i>
+  </span>
+  <span>Home</span>
+</span>
+
 
         <section class="section">
-
             <div class="container">
                 <div class="box" style="max-width: 480px; margin:auto; padding-bottom: 50px; color:pink; ">
                     <div class="reservation">
@@ -145,7 +156,7 @@
                                                 </a>
                                             </p>
                                             <p class="control is-expanded">
-                                                <input class="input" id="date" type="date" placeholder="날짜">
+                                                <input class="input" id="date" type="text" placeholder="날짜">
                                             </p>
                                         </div>
                                     </div>
@@ -212,7 +223,7 @@
             </div>
         </section>
 
-        <section>
+        <section style="margin-bottom: 100px">
             <table class="table" style="max-width: 480px; margin:auto">
                 <thead>
                 <tr>
