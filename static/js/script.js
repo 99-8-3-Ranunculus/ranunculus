@@ -23,12 +23,13 @@ function onGeoSucess(position) {
             const WTalk = document.querySelector("#weather span:last-child");
             const WMainList = [];
             const WIconDict = {
-                'Rain': "비오는 날엔 라이트한 시트러스 ",
-                'Drizzle': " 추적추적 이슬비에 허벌 시프레",
-                'Clear': "화창한 날 그대에게 워터리 플로럴",
-                'Clouds': "날이 흐려도 그대의 향기는 진합니다. ",
-                'Thunderstorm': "강렬한 천둥같은 오리엔탈 머스크",
-                'Snow': "포근한 눈처럼 푸제르 파우더리",
+                'Rain': "추적추적 내리는 비엔, 라이트 시트러스 ",
+                'Drizzle': " 보슬보슬 보슬비를 닮은, 허벌 시프레",
+                'Clear': "화창한 날 그대에게, 워터리 플로럴",
+                'Clouds': "날이 흐려도 진한 향기, 클라우드 오데. ",
+                'Thunderstorm': "천둥같이 강렬한, 오리엔탈 머스크",
+                'Snow': "포근한 눈처럼, 푸제르 파우더리",
+                'Mist' : "안개꽂 짙은 촉촉 싱그러운, 베이브 브렛",
                 'Normal': "그대에게 향기를"
             };
             console.log("여기 아래에 data.weather 어레이")
