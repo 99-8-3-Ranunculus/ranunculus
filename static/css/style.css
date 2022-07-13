@@ -32,3 +32,11 @@
     color: #fff !important;
     border-color: transparent;
 }
+
+#weather {
+    color: pink !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

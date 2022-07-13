@@ -26,7 +26,7 @@ function onGeoSucess(position) {
                 'Rain': "비오는 날엔 라이트한 시트러스 ",
                 'Drizzle': " 추적추적 이슬비에 허벌 시프레",
                 'Clear': "화창한 날 그대에게 워터리 플로럴",
-                'Claud': "날이 흐려도 그대는 향기롭다. ",
+                'Clouds': "날이 흐려도 그대의 향기는 진합니다. ",
                 'Thunderstorm': "강렬한 천둥같은 오리엔탈 머스크",
                 'Snow': "포근한 눈처럼 푸제르 파우더리",
                 'Normal': "그대에게 향기를"
