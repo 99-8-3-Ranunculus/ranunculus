@@ -100,14 +100,17 @@ def check_dup():
 def save_review():
     nickNameReceive = request.form['nickNameGive']
     contentReceive = request.form['contentGive']
+    exists = bool(db.class_reviews.find_one({"nickName": nickNameReceive}))
 
-    doc = {
-        'nickName': nickNameReceive,
-        'content': contentReceive
-    }
-    db.class_reviews.insert_one(doc)
-    print('리뷰글 POST 요청!')
-    return jsonify({'msg': '리뷰글을 작성했습니다!'})
+    if (exists) :
+        return jsonify({'msg' : "한 회원당 하나의 리뷰만 작성할 수 있습니다."})
+    else :
+        doc = {
+            'nickName': nickNameReceive,
+            'content': contentReceive
+        }
+        db.class_reviews.insert_one(doc)
+        return jsonify({'msg': '리뷰글을 작성했습니다!'})
 
 
 @app.route("/review/show", methods=["GET"])
