@@ -14,10 +14,8 @@ SECRET_KEY = 'RANUNCULUS'
 
 # client = MongoClient('mongodb+srv://test:abcabc@cluster0.rwxzu.mongodb.net/Cluster0?retryWrites=true&w=majority')
 # db = client.dbsparta
-# client = MongoClient('mongodb+srv://frago:G8JQhmTgex80D5NV@cluster0.3pkyv7h.mongodb.net/Cluster0?retryWrites=true&w=majority')
-# db = client.dbRanunculus
-client = MongoClient('mongodb+srv://test:sparta@cluster0.2j3gh4r.mongodb.net/Cluster0?retryWrites=true&w=majority')
-db = client.dbsparta
+client = MongoClient('mongodb+srv://frago:G8JQhmTgex80D5NV@cluster0.3pkyv7h.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbRanunculus
 
 
 @app.route('/')
@@ -122,7 +120,16 @@ def get_review():
 # reservation
 @app.route('/reservation')
 def showreservation():
-    return render_template('reservation.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('reservation.html', user_info=user_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
 
 @app.route("/reservation", methods=["POST"])
 def web_reservation_post():
