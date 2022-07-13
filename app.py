@@ -110,15 +110,15 @@ def web_reservation_post():
     return jsonify({'msg': '예약 완료되었습니다.'})
 
 
-@app.route("/reservation", methods=["GET"])
-def web_reservation_get():
-    return jsonify({'msg': 'GET 연결 완료!'})
+# @app.route("/rev", methods=["GET"])
+# def web_reservation_get():
+#     return jsonify({'msg': 'GET 연결 완료!'})
 
 #
-# @app.route("/reservation", methods=["GET"])
-# def web_reservation_get():
-#     reservation_list = list(db.ranunculus.find({}, {'_id': False}))
-#     return jsonify({'reservations':reservation_list})
+@app.route("/rev", methods=["GET"])
+def web_reservation_get():
+    reservation_list = list(db.ranunculus.find({}, {'_id': False}))
+    return jsonify({'reservations':reservation_list})
 
 
 

@@ -1,10 +1,12 @@
-{#
-<header>와
-    <nav> #}
-        {% include 'lib/top.html' %}
+{# <header>와 <nav> #}
+{% include 'lib/top.html' %}
 
 
         <style>
+            .field-body .field .field {
+                margin :10px 0 10px 0;
+            }
+
             .field.is-horizontal {
                 margin: 0px;
             }
@@ -15,7 +17,7 @@
                 margin: 25px 0px 40px 0px;
             }
 
-            .level.is-mobile .level-item:not(.is-narrow) {
+            .level.is-mobile .level-item:not(.is-narrow)
                 height: 60px;
                 margin-top: 20px;
                 font-weight: bold;
@@ -39,22 +41,6 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                show_order();
-            });
-
-            function show_order() {
-                $.ajax({
-                    type: 'GET',
-                    url: '/reservation',
-                    data: {},
-                    success: function (response) {
-                        alert(response['msg'])
-                    }
-                });
-            }
-
-
             // $(document).ready(function () {
             //     show_order();
             // });
@@ -62,42 +48,60 @@
             // function show_order() {
             //     $.ajax({
             //         type: 'GET',
-            //         url: '/reservation',
+            //         url: '/rev',
             //         data: {},
             //         success: function (response) {
-            //             let rows = response['reservations']
-            //             for (let i = 0; i < rows.length; i++) {
-            //                 let name = rows[i]['name']
-            //                 let date = rows[i]['date']
-            //                 let time = rows[i]['time']
-            //                 let comment = rows[i]['comment']
-            //
-            //                 let temp_html = `<tr>
-            //                             <td${name}</td>
-            //                             <td>${date}</td>
-            //                             <td>${time}</td>
-            //                             <td>${comment}</td>
-            //                          </tr>`
-            //
-            //                 $('#order-box').append(temp_html)
-            //             }
+            //             alert(response['msg'])
             //         }
             //     });
             // }
 
+
+            $(document).ready(function () {
+                show_order();
+            });
+
+            function show_order() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/rev',
+                    data: {},
+                    success: function (response) {
+                        let rows = response['reservations']
+                        for (let i = 0; i < rows.length; i++) {
+                            let name = rows[i]['name']
+                            let date = rows[i]['date']
+                            let time = rows[i]['time']
+                            let comment = rows[i]['comment']
+
+                            let temp_html = `<tr>
+                                        <td>${name}</td>
+                                        <td>${date}</td>
+                                        <td>${time}</td>
+                                        <td>${comment}</td>
+                                     </tr>`
+
+                            $('#order-box').append(temp_html)
+                        }
+                    }
+                });
+            }
+
             function save_order() {
                 let name = $('#name').val()
                 let date = $('#date').val()
-                let time = $('#time').val()
+                let time = $('#time :selected').text()
+
+                console.log(time)
                 let comment = $('#comment').val()
 
-                // if (name === '') {
-                //     alert('이름을 입력하세요!')
-                // } else if (date === '') {
-                //     alert('날짜를 입력하세요!')
-                // } else if (time === '') {
-                //     alert('시간을 입력하세요!')
-                // } else {
+                if (name === '') {
+                    alert('이름을 입력하세요!')
+                } else if (date === '') {
+                    alert('날짜를 입력하세요!')
+                } else if (time === '') {
+                    alert('시간을 입력하세요!')
+                } else {
                 $.ajax({
                     type: 'POST',
                     url: '/reservation',
@@ -109,7 +113,7 @@
                 });
             }
 
-            // }
+            }
         </script>
 
         <section class="section">
@@ -151,6 +155,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="field is-horizontal">
                                 <div class="field-body">
                                     <div class="field is-expanded">
@@ -174,13 +179,31 @@
                                     </div>
                                 </div>
                             </div>
+
+                             <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field is-expanded">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <a class="button is-static">
+                                                    이름
+                                                </a>
+                                            </p>
+                                            <p class="control is-expanded">
+                                                <input class="input" id="name" type="text" placeholder="이름">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="field is-horizontal">
                                 <div class="field-body">
                                     <div class="field is-expanded">
                                         <div class="field has-addons">
                                             <p class="control">
                                                 <a class="button is-static">
-                                                    note
+                                                    option
                                                 </a>
                                             </p>
                                             <p class="control is-expanded">
@@ -194,7 +217,7 @@
 
                             <div id="div-sign-in-or-up" class="has-text-centepink">
                                 <nav class="level is-mobile">
-                                    <button class="level-item button is-ranunculus" onclick="save_order()">
+                                    <button class="level-item button is-ranunculus" style="height: 60px " onclick="save_order()">
                                         예약하기
                                     </button>
                                 </nav>
@@ -202,6 +225,7 @@
 
                         </div>
                     </div>
+                </div>
         </section>
 
         <section>
@@ -215,24 +239,6 @@
                 </tr>
                 </thead>
                 <tbody id="order-box">
-                <tr>
-                    <td>도레미</td>
-                    <td>2022-07-14</td>
-                    <td>16:00-18:00</td>
-                    <td>ㄷㄷ</td>
-                </tr>
-                <tr>
-                    <td>임꺽정</td>
-                    <td>2022-07-14</td>
-                    <td>10:00-12:00</td>
-                    <td>ㄴㄴ</td>
-                </tr>
-                <tr>
-                    <td>세종대왕</td>
-                    <td>2022-07-14</td>
-                    <td>14:00-16:00</td>
-                    <td>ㅇㅇ</td>
-                </tr>
                 </tbody>
             </table>
         </section>
@@ -245,3 +251,4 @@
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
         </body>
         </html>
+</nav>
