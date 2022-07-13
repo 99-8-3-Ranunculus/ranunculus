@@ -25,3 +25,10 @@
     justify-content: center;
     align-items: center;
 }
+
+#review_btn {
+    padding: 10px;
+    background-color: pink;
+    color: #fff !important;
+    border-color: transparent;
+}
