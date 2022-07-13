@@ -11,7 +11,6 @@
 
     <!-- CSS -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/member.css') }}" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -21,8 +20,6 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
-
 </head>
 <body>
 
@@ -40,12 +37,12 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button is-ranunculus">
-                    <strong>가입하기</strong>
-                </a>
-                <a class="button is-light">
-                    로그인
-                </a>
+                {% if user_info %}
+                    <h6 class="greeting">{{ user_info.username }}님 반갑습니다.</h6>
+                    <a class="button is-sign" onclick="logout()">Log Out</a>
+                {% else %}
+                    <a class="button is-sign" onclick="window.location.href='/login'">Log In</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -8,3 +8,13 @@
     color: pink !important;
 }
 
+.button.is-sign {
+    background-color: pink;
+    border-color: transparent;
+    color: #fff !important;
+    width: 100px;
+}
+
+.greeting {
+    margin-right: 50px;
+}
