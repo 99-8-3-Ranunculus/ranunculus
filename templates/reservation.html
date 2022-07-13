@@ -43,20 +43,6 @@
         </style>
 
         <script>
-            // $(document).ready(function () {
-            //     show_order();
-            // });
-            //
-            // function show_order() {
-            //     $.ajax({
-            //         type: 'GET',
-            //         url: '/rev',
-            //         data: {},
-            //         success: function (response) {
-            //             alert(response['msg'])
-            //         }
-            //     });
-            // }
 
 
             $(document).ready(function () {
@@ -116,9 +102,17 @@
                 }
 
             }
+
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+
         </script>
 
+        <p>Date: <input type="text" id="datepicker"></p>
+
         <section class="section">
+
             <div class="container">
                 <div class="box" style="max-width: 480px; margin:auto; padding-bottom: 50px; color:pink; ">
                     <div class="reservation">
@@ -151,7 +145,7 @@
                                                 </a>
                                             </p>
                                             <p class="control is-expanded">
-                                                <input class="input" id="date" type="date" placeholder="이름">
+                                                <input class="input" id="date" type="date" placeholder="날짜">
                                             </p>
                                         </div>
                                     </div>
@@ -168,7 +162,7 @@
                                                 </a>
                                             </p>
                                             <div class="control is-expanded">
-                                                <div class="select" id="name" type="text" placeholder="이름">
+                                                <div class="select" id="time" type="text" placeholder="이름">
                                                     <select style="width: 380px; border-radius: 0 4px 4px 0">
                                                         <option selected>-- 예약시간 --</option>
                                                         <option value="10-12">10:00-12:00</option>
