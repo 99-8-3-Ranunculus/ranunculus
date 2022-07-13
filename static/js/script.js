@@ -1,5 +1,6 @@
 ////////// 메인 페이지 //////////
 
+
 // https://openweathermap.org/current
 // https://openweathermap.org/weather-conditions
 const API_KEY = "9eb9bef9a874a362a38c4362cb02b64e";
