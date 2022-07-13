@@ -55,7 +55,6 @@ def sign_in():
          'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-
         return jsonify({'result': 'success', 'token': token, 'msg' : f'{username_receive}님 반갑습니다.'})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
@@ -191,16 +190,6 @@ def web_reservation_post():
 
     return jsonify({'msg': '예약 완료되었습니다.'})
 
-
-@app.route("/reservation", methods=["GET"])
-def web_reservation_get():
-    return jsonify({'msg': 'GET 연결 완료!'})
-
-#
-# @app.route("/reservation", methods=["GET"])
-# def web_reservation_get():
-#     reservation_list = list(db.ranunculus.find({}, {'_id': False}))
-#     return jsonify({'reservations':reservation_list})
 
 @app.route("/rev", methods=["GET"])
 def web_reservation_get():

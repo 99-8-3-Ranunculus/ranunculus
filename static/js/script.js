@@ -190,7 +190,6 @@ function sign_up() {
 function sign_in() {
     let username = $("#input-username").val()
     let password = $("#input-password").val()
-    console.log(username, password)
 
     if (username == "") {
         $("#help-id-login").text("아이디를 입력해주세요.")
