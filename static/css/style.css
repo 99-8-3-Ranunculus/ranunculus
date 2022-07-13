@@ -34,9 +34,10 @@
 }
 
 #weather {
-    color: pink !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-shadow: -1px 0 #bb8d95, 0 1px #bb8d95, 1px 0 #bb8d95, 0 -1px #bb8d95;;
+    font-weight: bold;
 }
