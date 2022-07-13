@@ -73,7 +73,7 @@ function logout() {
     alert('정상 로그아웃 되었습니다.')
     window.location.href="/"
 }
-=======
+
 // https://openweathermap.org/current
 // https://openweathermap.org/weather-conditions
 const API_KEY = "9eb9bef9a874a362a38c4362cb02b64e";
@@ -134,4 +134,3 @@ function getWeather(data) {
 
 navigator.geolocation.getCurrentPosition(onGeoSucess, onGeoError);
 // https://developer.mozilla.org/ko/docs/Web/API/Geolocation/getCurrentPosition
->>>>>>> feature/byungno
