@@ -67,3 +67,10 @@ function save_review() {
 function if_not_member() {
     $("#review_form").toggleClass("is-hidden")
 }
+
+
+function logout() {
+    $.removeCookie('mytoken');
+    alert('로그아웃 되었습니다.')
+    window.location.href="/"
+}
