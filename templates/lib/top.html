@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="라넌큘러스 - 원데이 클래스"/>
+    <meta property="og:description" content="그대에게 향기를! 원데이 클래스를 만나보세요!"/>
+    <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}"/>
+
     <title>라넌큘러스 - 원데이 클래스</title>
 
     <!-- Bulma CSS -->
@@ -15,6 +21,10 @@
     <!-- Font Awesome CSS -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@200;400;500&display=swap" rel="stylesheet">
 
     {# 로고 이미지 경로 {{ url_for('static', filename='logo.png') }} #}
     <!-- JS -->
@@ -28,18 +38,13 @@
         <a class="navbar-item" href="/">
             <img src="{{ url_for('static', filename='logo.png') }}" width="100" height="100">
         </a>
-{#        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">#}
-{#            <span aria-hidden="true"></span>#}
-{#            <span aria-hidden="true"></span>#}
-{#            <span aria-hidden="true"></span>#}
-{#        </a>#}
     </div>
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
                 {% if user_info %}
-                    <h6 class="greeting">{{ user_info.username }}님 반갑습니다.</h6>
-                    <a class="button is-sign" onclick="logout()">Log Out</a>
+                    <p class="greeting">{{ user_info.username }}님</p>
+                    <a class="button is-sign" onclick="sign_out()">Log Out</a>
                 {% else %}
                     <a class="button is-sign" onclick="window.location.href='/login'">Log In</a>
                 {% endif %}

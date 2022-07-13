@@ -12,8 +12,10 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 SECRET_KEY = 'RANUNCULUS'
 
-client = MongoClient('mongodb+srv://test:abcabc@cluster0.rwxzu.mongodb.net/Cluster0?retryWrites=true&w=majority')
-db = client.dbsparta
+# client = MongoClient('mongodb+srv://test:abcabc@cluster0.rwxzu.mongodb.net/Cluster0?retryWrites=true&w=majority')
+# db = client.dbsparta
+client = MongoClient('mongodb+srv://frago:G8JQhmTgex80D5NV@cluster0.3pkyv7h.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.dbRanunculus
 
 
 @app.route('/')
@@ -69,7 +71,7 @@ def review():
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
 
 
 @app.route('/sign_up/save', methods=['POST'])
@@ -98,14 +100,17 @@ def check_dup():
 def save_review():
     nickNameReceive = request.form['nickNameGive']
     contentReceive = request.form['contentGive']
+    exists = bool(db.class_reviews.find_one({"nickName": nickNameReceive}))
 
-    doc = {
-        'nickName': nickNameReceive,
-        'content': contentReceive
-    }
-    db.class_reviews.insert_one(doc)
-    print('리뷰글 POST 요청!')
-    return jsonify({'msg': '리뷰글을 작성했습니다!'})
+    if (exists) :
+        return jsonify({'msg' : "한 회원당 하나의 리뷰만 작성할 수 있습니다."})
+    else :
+        doc = {
+            'nickName': nickNameReceive,
+            'content': contentReceive
+        }
+        db.class_reviews.insert_one(doc)
+        return jsonify({'msg': '리뷰글을 작성했습니다!'})
 
 
 @app.route("/review/show", methods=["GET"])
@@ -118,7 +123,16 @@ def get_review():
 # reservation
 @app.route('/reservation')
 def showreservation():
-    return render_template('reservation.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('reservation.html', user_info=user_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
+
 
 @app.route("/reservation", methods=["POST"])
 def web_reservation_post():

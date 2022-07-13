@@ -1,15 +1,28 @@
+/*폰트 추가*/
+*{ font-family: 'Noto Serif KR', serif; }
+button { font-family: 'Noto Serif KR', serif;  }
+/*구글 폰트*/
+.font_Gb { font-family: 'Gowun Batang', serif; }
+.font_Ns { font-family: 'Noto Serif KR', serif; }
+
+
+/*index 페이지*/
+.mTitle { font-size: 2.5rem;}
+
 #hero_image {
-    background-image: url("https://ifh.cc/g/QLzcG4.jpg");
+    background-image: url("../main_back.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-color:#fbd3cb;
 }
 
+/*상단*/
 .is-ranunculus {
     color: pink !important;
 }
 
 .button.is-sign {
-    background-color: pink;
+    background-color: #d5a2a1;
     border-color: transparent;
     color: #fff !important;
     width: 100px;
@@ -18,3 +31,35 @@
 .greeting {
     margin-right: 50px;
 }
+
+.user_name_hi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#review_btn {
+    padding: 10px;
+    background-color: pink;
+    color: #fff !important;
+    border-color: transparent;
+}
+
+
+/*login 페이지*/
+
+
+/*reservation 페이지*/
+
+
+/*review 페이지*/
+
+#weather {
+    color: pink !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

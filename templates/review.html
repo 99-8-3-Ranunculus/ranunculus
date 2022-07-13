@@ -1,25 +1,27 @@
 {# <header>와 <nav> #}
 {% include 'lib/top.html' %}
 
-<div id="weather">
-    <span></span>
-    <span></span>
-</div>
-
 <div>
     <form id="review_form">
-        <div class="column field is-10">
+        <div class="column field is-12">
             <label class="label is-size-3">REVIEW</label>
             <div class="control">
                 <input id="content" class="input" type="text" placeholder="멋진 리뷰를 남겨주세요!" style="height: 50px">
             </div>
-            <div class="column">
-                <button onclick="save_review()" class="button ranunculus">글 작성</button>
-            </div>
+            <br>
+            <button onclick="save_review()" id="review_btn" class="button">리뷰 작성하기</button>
         </div>
+
+
+
     </form>
 </div>
 
+<div class="user_name_hi">
+    <span> <strong>{{ user_info.username }}</strong> 님 안녕하세요! 리뷰를 남겨주세요! </span>
+</div>
+
+<hr>
 <div>
     <div id="review_contents" class="card">
     </div>
