@@ -134,12 +134,53 @@ def showreservation():
         return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
 
 
+
 @app.route("/reservation", methods=["POST"])
 def web_reservation_post():
     name_receive = request.form['name_give']
     date_receive = request.form['date_give']
     time_receive = request.form['time_give']
     comment_receive = request.form['comment_give']
+
+    db.wow.find({})
+
+    a = db.ranunculus.find({"date": date_receive}, {"time": time_receive})
+    print(len(list(a)))
+
+
+#     if len list 0 이면
+#         들어가라. (중복이 없다는 뜻이니까;;)
+#     1부터면 중복이
+#     print(잇다는뜻이다)
+#      128번쨰를 안하면 댐.
+#
+#     if length 0 이면 128을 하고
+#         아니면(1이상이면) 안해.
+#
+#
+# if len list 0 이면
+# db.ranunculus.insert_one(doc)
+#
+#     return jsonify({'msg': '예약 완료되었습니다.'})
+#
+#     else {
+# return jsonify({'msg': '중복이삼.'})
+# }
+
+
+
+    # a = db.ranunculus.find({"date": date_receive})
+
+    # print(db.ranunculus.find({"date" : date_receive})
+
+    # print(a.scalar())
+    # print(a.pretty())
+
+
+    # print(a.시간)
+
+
+
     doc = {
         'name': name_receive,
         'date': date_receive,
@@ -161,6 +202,10 @@ def web_reservation_get():
 #     reservation_list = list(db.ranunculus.find({}, {'_id': False}))
 #     return jsonify({'reservations':reservation_list})
 
+@app.route("/rev", methods=["GET"])
+def web_reservation_get():
+    reservation_list = list(db.ranunculus.find({}, {'_id': False}))
+    return jsonify({'reservations': reservation_list})
 
 
 if __name__ == '__main__':
