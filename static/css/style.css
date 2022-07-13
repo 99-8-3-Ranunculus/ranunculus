@@ -46,6 +46,7 @@ button { font-family: 'Noto Serif KR', serif;  }
     border-color: transparent;
 }
 
+
 /*login 페이지*/
 
 
@@ -53,3 +54,12 @@ button { font-family: 'Noto Serif KR', serif;  }
 
 
 /*review 페이지*/
+
+#weather {
+    color: pink !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
