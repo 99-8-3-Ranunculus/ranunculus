@@ -29,6 +29,11 @@ def main():
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
+@app.route('/test')
+def test_main():
+    return render_template('index.html')
+
+
 @app.route('/login')
 def login():
     msg = request.args.get("msg")
