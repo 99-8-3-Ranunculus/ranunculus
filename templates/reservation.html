@@ -104,23 +104,12 @@
             $j(function () {
                 $j("#date").datepicker({
                     dateFormat: 'yy-mm-dd',
-                    minDate: 0,
-                    showOn: "both",
-                    buttonImageOnly: true,
-                    buttonImage: "calendar.gif",
-                    buttonText: "Calendar"
+                    minDate: 0
                 });
             });
 
 
         </script>
-
-        <span class="icon-text">
-  <span class="icon">
-    <i class="fas fa-home"></i>
-  </span>
-  <span>Home</span>
-</span>
 
 
         <section class="section">
@@ -155,9 +144,10 @@
                                                     날짜
                                                 </a>
                                             </p>
-                                            <p class="control is-expanded">
+                                            <div class="control has-icons-right" style="width:100%">
                                                 <input class="input" id="date" type="text" placeholder="날짜">
-                                            </p>
+                                                <span class="icon is-small is-right"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
