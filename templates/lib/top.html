@@ -44,7 +44,7 @@
             <div class="buttons">
                 {% if user_info %}
                     <p class="greeting">{{ user_info.username }}님</p>
-                    <a class="button is-sign" onclick="logout()">Log Out</a>
+                    <a class="button is-sign" onclick="sign_out()">Log Out</a>
                 {% else %}
                     <a class="button is-sign" onclick="window.location.href='/login'">Log In</a>
                 {% endif %}
