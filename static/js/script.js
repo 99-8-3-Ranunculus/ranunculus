@@ -26,16 +26,16 @@ function onGeoSucess(position) {
             } ;
             console.log("여기 아래에 data.weather 어레이")
             console.log(data.weather)
-            console.log(data.weather.at(-1).icon)
+            console.log(data.weather.at(0).icon)
             // 들어오는 날씨 정보 리스트
             for (let i = 0; i < data.weather.length; i++){
                 WMainList.push(data.weather[i].main)
             }
-            console.log(WMainList.at(-1))
+            console.log(WMainList.at(0))
 
-            const iconUrl = `https://openweathermap.org/img/wn/${data.weather.at(-1).icon}.png`;
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather.at(0).icon}.png`;
             WIcon.innerHTML = `<img src="${iconUrl}">`;
-            WTalk.innerText = WIconDict[WMainList.at(-1)]
+            WTalk.innerText = WIconDict[WMainList.at(0)]
         })
 }
 
