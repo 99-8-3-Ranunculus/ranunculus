@@ -18,21 +18,13 @@ db = client.dbsparta
 
 @app.route('/')
 def main():
-    username = session.get('username', None)
-    print(username)
-    return render_template('index.html', username=username)
-
-# @app.route('/')
-# def main():
-#     token_receive = request.cookies.get('mytoken')
-#     try:
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#         user_info = db.users.find_one({"username": payload["id"]})
-#         return render_template('index.html', user_info=user_info)
-#     except jwt.ExpiredSignatureError:
-#         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-#     except jwt.exceptions.DecodeError:
-#         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+    if request.cookies.get('mytoken') is not None:
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('index.html', user_info=user_info)
+    else:
+        return render_template('index.html')
 
 
 @app.route('/login')
@@ -57,7 +49,7 @@ def sign_in():
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
-        return jsonify({'result': 'success', 'token': token, 'msg' : f'{username_receive}님 환영합니다.'})
+        return jsonify({'result': 'success', 'token': token, 'msg' : f'{username_receive}님 반갑습니다.'})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 

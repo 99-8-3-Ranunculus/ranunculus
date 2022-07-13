@@ -2,6 +2,7 @@ $(document).ready(function () {
     show_review();
 });
 
+
 function show_review() {
     $('.card-content').empty()
     $.ajax({
@@ -57,8 +58,6 @@ function save_review() {
 }
 
 
-
-
 // function toggle_review_form() {
 //     $("#review_form").toggleClass("is-hidden")
 // }
@@ -71,6 +70,6 @@ function if_not_member() {
 
 function logout() {
     $.removeCookie('mytoken');
-    alert('로그아웃 되었습니다.')
+    alert('정상 로그아웃 되었습니다.')
     window.location.href="/"
 }
