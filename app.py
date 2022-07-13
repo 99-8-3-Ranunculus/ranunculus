@@ -34,6 +34,11 @@ def main():
 #     except jwt.exceptions.DecodeError:
 #         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
+# 테스트를 위한 임시 route 앞으론 사용하지 않음
+# @app.route('/test')
+# def test_main():
+#     return render_template('index.html')
+
 
 @app.route('/login')
 def login():
