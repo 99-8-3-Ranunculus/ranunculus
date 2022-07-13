@@ -6,11 +6,11 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
-
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 SECRET_KEY = 'RANUNCULUS'
+
 
 # client = MongoClient('mongodb+srv://test:abcabc@cluster0.rwxzu.mongodb.net/Cluster0?retryWrites=true&w=majority')
 # db = client.dbsparta
@@ -18,6 +18,8 @@ SECRET_KEY = 'RANUNCULUS'
 # db = client.dbRanunculus
 client = MongoClient('mongodb+srv://test:sparta@cluster0.2j3gh4r.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
+
+
 
 @app.route('/')
 def main():
@@ -28,6 +30,7 @@ def main():
         return render_template('index.html', user_info=user_info)
     else:
         return render_template('index.html')
+
 
 # 테스트를 위한 임시 route 앞으론 사용하지 않음
 # @app.route('/test')
@@ -52,8 +55,8 @@ def sign_in():
 
     if result is not None:
         payload = {
-         'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)
+            'id': username_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
         return jsonify({'result': 'success', 'token': token, 'msg' : f'{username_receive}님 반갑습니다.'})
@@ -81,9 +84,9 @@ def sign_up():
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     number_receive = request.form['number_give']
     doc = {
-        "username": username_receive,                               # 아이디
-        "password": password_hash,                                  # 비밀번호
-        "number": number_receive                                    # 전화번호
+        "username": username_receive,  # 아이디
+        "password": password_hash,  # 비밀번호
+        "number": number_receive  # 전화번호
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
@@ -102,9 +105,9 @@ def save_review():
     contentReceive = request.form['contentGive']
     exists = bool(db.class_reviews.find_one({"nickName": nickNameReceive}))
 
-    if (exists) :
-        return jsonify({'msg' : "한 회원당 하나의 리뷰만 작성할 수 있습니다."})
-    else :
+    if (exists):
+        return jsonify({'msg': "한 회원당 하나의 리뷰만 작성할 수 있습니다."})
+    else:
         doc = {
             'nickName': nickNameReceive,
             'content': contentReceive
@@ -117,7 +120,6 @@ def save_review():
 def get_review():
     review_list = list(db.class_reviews.find({}, {'_id': False}))
     return jsonify({'reviews': review_list})
-
 
 
 # reservation
@@ -134,21 +136,45 @@ def showreservation():
         return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
 
 
-
 @app.route("/reservation", methods=["POST"])
 def web_reservation_post():
     name_receive = request.form['name_give']
     date_receive = request.form['date_give']
     time_receive = request.form['time_give']
     comment_receive = request.form['comment_give']
+    doc = {
+        'name': name_receive,
+        'date': date_receive,
+        'time': time_receive,
+        'comment': comment_receive
+    }
+    db.ranunculus.insert_one(doc)
 
-    db.wow.find({})
+    return jsonify({'msg': '예약 완료되었습니다.'})
+
 
     a = db.ranunculus.find({"date": date_receive}, {"time": time_receive})
     print(len(list(a)))
+    #
+    # if (len(list(a)) == 0):
+    #     db.ranunculus.insert_one(doc)
+    #     return jsonify({'msg': '예약 완료되었습니다.'})
+    #
+    # else (len(list(a)) > 1):
+    #     db.ranunculus.insert_one(doc)
+    #     return jsonify({'msg': '중복입니다.'})
 
 
-#     if len list 0 이면
+
+
+@app.route("/rev", methods=["GET"])
+def web_reservation_get():
+    reservation_list = list(db.ranunculus.find({}, {'_id': False}))
+    return jsonify({'reservations': reservation_list})
+
+
+
+# if len list 0 이면
 #         들어가라. (중복이 없다는 뜻이니까;;)
 #     1부터면 중복이
 #     print(잇다는뜻이다)
@@ -167,9 +193,13 @@ def web_reservation_post():
 # return jsonify({'msg': '중복이삼.'})
 # }
 
+# a = db.ranunculus.find({"date": date_receive})
 
+# print(db.ranunculus.find({"date" : date_receive})
 
-    # a = db.ranunculus.find({"date": date_receive})
+# print(a.scalar())
+# print(a.pretty())
+
 
     # print(db.ranunculus.find({"date" : date_receive})
 
@@ -192,11 +222,7 @@ def web_reservation_post():
     return jsonify({'msg': '예약 완료되었습니다.'})
 
 
-@app.route("/rev", methods=["GET"])
-def web_reservation_get():
-    reservation_list = list(db.ranunculus.find({}, {'_id': False}))
-    return jsonify({'reservations': reservation_list})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
+
