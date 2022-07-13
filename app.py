@@ -12,7 +12,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 SECRET_KEY = 'SPARTA'
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.2j3gh4r.mongodb.net/Cluster0?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:abcabc@cluster0.rwxzu.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 
@@ -85,6 +85,41 @@ def save_review():
 def get_review():
     review_list = list(db.class_reviews.find({}, {'_id': False}))
     return jsonify({'reviews': review_list})
+
+
+
+# reservation
+@app.route('/reservation')
+def showreservation():
+    return render_template('reservation.html')
+
+@app.route("/reservation", methods=["POST"])
+def web_reservation_post():
+    name_receive = request.form['name_give']
+    date_receive = request.form['date_give']
+    time_receive = request.form['time_give']
+    comment_receive = request.form['comment_give']
+    doc = {
+        'name': name_receive,
+        'date': date_receive,
+        'time': time_receive,
+        'comment': comment_receive
+    }
+    db.ranunculus.insert_one(doc)
+
+    return jsonify({'msg': '예약 완료되었습니다.'})
+
+
+@app.route("/reservation", methods=["GET"])
+def web_reservation_get():
+    return jsonify({'msg': 'GET 연결 완료!'})
+
+#
+# @app.route("/reservation", methods=["GET"])
+# def web_reservation_get():
+#     reservation_list = list(db.ranunculus.find({}, {'_id': False}))
+#     return jsonify({'reservations':reservation_list})
+
 
 
 if __name__ == '__main__':
