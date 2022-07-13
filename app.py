@@ -71,7 +71,7 @@ def review():
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
 
 
 @app.route('/sign_up/save', methods=['POST'])
@@ -128,7 +128,7 @@ def showreservation():
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        return redirect(url_for("login", msg="로그인 후 이용 가능합니다."))
 
 
 @app.route("/reservation", methods=["POST"])

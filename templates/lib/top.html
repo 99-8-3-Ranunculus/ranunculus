@@ -38,7 +38,7 @@
         <div class="navbar-item">
             <div class="buttons">
                 {% if user_info %}
-                    <h6 class="greeting">{{ user_info.username }}님 반갑습니다.</h6>
+                    <p class="greeting">{{ user_info.username }}님</p>
                     <a class="button is-sign" onclick="logout()">Log Out</a>
                 {% else %}
                     <a class="button is-sign" onclick="window.location.href='/login'">Log In</a>
