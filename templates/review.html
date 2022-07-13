@@ -1,11 +1,6 @@
 {# <header>와 <nav> #}
 {% include 'lib/top.html' %}
 
-<div id="weather">
-    <span></span>
-    <span></span>
-</div>
-
 <div>
     <form id="review_form">
         <div class="column field is-10">
@@ -20,6 +15,11 @@
     </form>
 </div>
 
+<div class="user_name_hi">
+    <span> <strong>{{ user_info.username }}</strong> 님 안녕하세요! 리뷰를 남겨주세요! </span>
+</div>
+
+<hr>
 <div>
     <div id="review_contents" class="card">
     </div>
