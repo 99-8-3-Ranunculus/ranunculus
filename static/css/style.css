@@ -139,4 +139,28 @@ button { font-family: 'Noto Serif KR', serif;  }
     padding-right: 0.75rem;
     padding-bottom:30px;
     background-color:#fbd3cb;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+#card_title {
+    font-size: 20px;
+}
+
+#card_subtitle {
+    font-size: 15px;
+}
+
+#review_form > div > label {
+    margin-top: 20px;
+}
+
+#review_form {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#content {
+    width: 100%;
 }
