@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="라넌큘러스 - 원데이 클래스"/>
+    <meta property="og:description" content="그대에게 향기를! 원데이 클래스를 만나보세요!"/>
+    <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}"/>
     <title>라넌큘러스 - 원데이 클래스</title>
 
     <!-- Bulma CSS -->
@@ -65,8 +70,8 @@
                 <span class="is-size-5"></span>
             </div>
         </p><br>
-        <a href="/review" class="button is-ranunculus mbtn-l">회원 리뷰 보러가기</a>
-        <a href="/reservation" class="button is-ranunculus mbtn-r">클래스 예약 하러가기</a>
+        <a href="/review" class="button is-ranunculus mbtn-l" style="margin: 15px 0 0 0">회원 리뷰 보러가기</a>
+        <a href="/reservation" class="button is-ranunculus mbtn-r" style="margin: 15px 0 0 10px">클래스 예약 하러가기</a>
     </div>
 </section>
 
