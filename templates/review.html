@@ -1,6 +1,6 @@
 {# <header>와 <nav> #}
 {% include 'lib/top.html' %}
-
+<div class="review-wrap">
 <div>
     <form id="review_form">
         <div class="column field is-12">
@@ -11,9 +11,6 @@
             <br>
             <button onclick="save_review()" id="review_btn" class="button">리뷰 작성하기</button>
         </div>
-
-
-
     </form>
 </div>
 
@@ -22,11 +19,11 @@
 </div>
 
 <hr>
-<div>
+<div class="cards-box">
     <div id="review_contents" class="card">
     </div>
 </div>
-
+</div>
 <script>
     $(document).ready(function () {
         show_review();
