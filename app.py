@@ -146,7 +146,7 @@ def web_reservation_post():
     a = bool(db.ranunculus.find_one({"date": date_receive}, {"time": time_receive}))
 
     if (a) :
-        return jsonify({'msg': '중복입니다.'})
+        return jsonify({'msg': '날짜 혹은 시간을 변경해주세요.'})
     else :
         doc = {
             'name': name_receive,
