@@ -2,16 +2,23 @@
 ranunculus 웹 개발 미니 프로젝트
 
 ---
+
 프로젝트 시작일 22.07.11
 프로젝트 종료일 22.07.11
+
 ---
 
 ### 프로젝트 소개
-[블로그](https://velog.io/@hahbr88/%EB%9D%BC%EB%84%8C%ED%81%98%EB%9F%AC%EC%8A%A4-%EC%9B%90%EB%8D%B0%EC%9D%B4-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%9B%B9%EC%95%B1)
+
+라넌큘러스 공방에서 원데이 클래스를 모집합니다
+메인페이지에서 오늘의 날씨에 맞는 향수를 추천해줍니다.
+user는 회원가입을 한 후 원하는 날짜를 선택하여 클래스 예약을 할 수 있습니다.
+user는 강좌를 듣고 난 후엔 후기 글을 업로드 할 수 있습니다.
+
 ---
 
 ### 팀 구성
-팀장 : 나소나
+팀장 : 나소나<br>
 팀원 : 하병노, 박진우, 김한빛
 
 ---
@@ -59,4 +66,15 @@ ranunculus 웹 개발 미니 프로젝트
 │
 └── app.py
 ``` 
+
 ---
+
+### 기능 table
+|기능 |Method|URL|request|reponse|
+|---|---|---|---|---|
+|로그인|POST|/signin|{'id' : id, 'pw' : pw}	|
+|회원가입|POST|/signup|{'id' : id, 'pw' : pw, 'name' : name}|가입 완료 메세지
+|예약|POST|/reservation|{'class' : class, 'date' : date, 'person' : person}|클래스 예약 데이터
+|예약 조회|GET|/reservation||클래스 예약 grid
+|후기 작성|POST|/review/show|{'title' : title, 'contents' : contents}|작성 후기 데이터
+|후기 조회|GET|/review/show|후기 리스트
