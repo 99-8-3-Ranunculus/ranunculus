@@ -127,6 +127,12 @@ button { font-family: 'Noto Serif KR', serif;  }
     border-color: transparent;
     margin-left: auto;
     display: block;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#review_btn:hover {
+    background-color: #dab6b5;
 }
 
 .cards-box {

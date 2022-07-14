@@ -11,6 +11,8 @@ const options = {
     maximumAge: 0
 };
 
+// 제주시 lat = 33.4895
+
 function onGeoSucess(position) {
     console.log(position)
     const lat = position.coords.latitude;
@@ -50,8 +52,9 @@ function onGeoSucess(position) {
 
 function onGeoError() {
     alert("사용자의 위치를 찾을 수 없음");
+    const WIcon = document.querySelector("#weather span:first-child");
     const WTalk = document.querySelector("#weather span:last-child");
-    WIcon.innerHTML = ``
+    WIcon.innerHTML = `<i style="margin: 10px 10px 10px 10px" class="fa fa-pagelines fa-2x" aria-hidden="true"></i>`
     WTalk.innerText = "꽃처럼 향기로운 당신에게"
 }
 
