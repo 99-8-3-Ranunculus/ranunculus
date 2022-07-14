@@ -13,57 +13,91 @@ const options = {
 
 // 제주시 lat = 33.4895
 
-function onGeoSucess(position) {
-    console.log(position)
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=kr&appid=${API_KEY}`;
-    fetch(API_URL)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            const WIcon = document.querySelector("#weather span:first-child");
-            const WTalk = document.querySelector("#weather span:last-child");
-            const WMainList = [];
+function wetherSparta() {
+    const api_url = 'http://spartacodingclub.shop/sparta_api/weather/seoul'
+
+    $.ajax({
+        type: "GET",
+        url: api_url,
+        data: {},
+        success: function (response) {
+            console.log(response)
+            console.log(response.icon)
+            let icon = response.icon.split('/').at(-1)
+            console.log(icon)
+            console.log(icon.substring(0,2))
+
             const WIconDict = {
-                'Rain': "추적추적 내리는 비엔, 라이트 시트러스 ",
-                'Drizzle': " 보슬보슬 보슬비를 닮은, 허벌 시프레",
-                'Clear': "화창한 날 그대에게, 워터리 플로럴",
-                'Clouds': "날이 흐려도 진한 향기, 클라우드 오데. ",
-                'Thunderstorm': "천둥같이 강렬한, 오리엔탈 머스크",
-                'Snow': "포근한 눈처럼, 푸제르 파우더리",
-                'Mist' : "안개꽂 짙은 촉촉 싱그러운, 베이브 브렛",
+                '01': "화창한 날 그대에게, 워터리 플로럴",
+                '02': "새털 구름같은 포근함, 시프레 클라우드. ",
+                '03': "날이 흐려도 진한 향기, 클라우드 오데. ",
+                '04': "어둑어둑 꿀꿀한 날, 베이브 클라우드. ",
+                '09': "추적추적 내리는 비엔, 라이트 시트러스 ",
+                '10': " 보슬보슬 보슬비를 닮은, 허벌 시프레",
+                '11': "천둥같이 강렬한, 오리엔탈 머스크",
+                '13': "포근한 눈처럼, 푸제르 파우더리",
+                '50': "안개꽂 짙은 촉촉 싱그러운, 베이브 브렛",
                 'Normal': "그대에게 향기를"
             };
-            console.log("여기 아래에 data.weather 어레이")
-            console.log(data.weather)
-            console.log(data.weather.at(0).icon)
-            // 들어오는 날씨 정보 리스트
-            for (let i = 0; i < data.weather.length; i++) {
-                WMainList.push(data.weather[i].main)
-            }
-            console.log(WMainList.at(0))
-
-            const iconUrl = `https://openweathermap.org/img/wn/${data.weather.at(0).icon}.png`;
+            const WIcon = document.querySelector("#weather span:first-child");
+            const WTalk = document.querySelector("#weather span:last-child");
+            const iconUrl = `https://openweathermap.org/img/wn/${icon.substring(0,2)}d.png`
             WIcon.innerHTML = `<img src="${iconUrl}">`;
-            WTalk.innerText = WIconDict[WMainList.at(0)]
-        })
+            WTalk.innerText = WIconDict[icon.substring(0,2)]
+        }
+    })
 }
 
-function onGeoError() {
-    alert("사용자의 위치를 찾을 수 없음");
-    const WIcon = document.querySelector("#weather span:first-child");
-    const WTalk = document.querySelector("#weather span:last-child");
-    WIcon.innerHTML = `<i style="margin: 10px 10px 10px 10px" class="fa fa-pagelines fa-2x" aria-hidden="true"></i>`
-    WTalk.innerText = "꽃처럼 향기로운 당신에게"
-}
+//
+// function onGeoSucess(position) {
+//     console.log(position)
+//     const lat = position.coords.latitude;
+//     const lon = position.coords.longitude;
+//     const API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=kr&appid=${API_KEY}`;
+//     fetch(API_URL)
+//         .then((response) => response.json())
+//         .then((data) => {
+//             console.log(data)
+//             const WIcon = document.querySelector("#weather span:first-child");
+//             const WTalk = document.querySelector("#weather span:last-child");
+//             const WMainList = [];
+//             const WIconDict = {
+//                 'Rain': "추적추적 내리는 비엔, 라이트 시트러스 ",
+//                 'Drizzle': " 보슬보슬 보슬비를 닮은, 허벌 시프레",
+//                 'Clear': "화창한 날 그대에게, 워터리 플로럴",
+//                 'Clouds': "날이 흐려도 진한 향기, 클라우드 오데. ",
+//                 'Thunderstorm': "천둥같이 강렬한, 오리엔탈 머스크",
+//                 'Snow': "포근한 눈처럼, 푸제르 파우더리",
+//                 'Mist': "안개꽂 짙은 촉촉 싱그러운, 베이브 브렛",
+//                 'Normal': "그대에게 향기를"
+//             };
+//             console.log("여기 아래에 data.weather 어레이")
+//             console.log(data.weather)
+//             console.log(data.weather.at(0).icon)
+//             // 들어오는 날씨 정보 리스트
+//             for (let i = 0; i < data.weather.length; i++) {
+//                 WMainList.push(data.weather[i].main)
+//             }
+//             console.log(WMainList.at(0))
+//
+//             const iconUrl = `https://openweathermap.org/img/wn/${data.weather.at(0).icon}.png`;
+//             WIcon.innerHTML = `<img src="${iconUrl}">`;
+//             WTalk.innerText = WIconDict[WMainList.at(0)]
+//         })
+// }
+//
+// function onGeoError() {
+//     alert("사용자의 위치를 찾을 수 없음");
+//     const WIcon = document.querySelector("#weather span:first-child");
+//     const WTalk = document.querySelector("#weather span:last-child");
+//     WIcon.innerHTML = `<i style="margin: 10px 10px 10px 10px" class="fa fa-pagelines fa-2x" aria-hidden="true"></i>`
+//     WTalk.innerText = "꽃처럼 향기로운 당신에게"
+// }
 
-navigator.geolocation.getCurrentPosition(onGeoSucess, onGeoError, options);
+// navigator.geolocation.getCurrentPosition(onGeoSucess, onGeoError, options);
 // https://developer.mozilla.org/ko/docs/Web/API/Geolocation/getCurrentPosition
 
 ////////// 메인 페이지 끝 //////////
-
-
 
 
 ////////// 리뷰 페이지 //////////
@@ -121,7 +155,6 @@ function save_review() {
 }
 
 ////////// 리뷰 페이지 끝 //////////
-
 
 
 ////////// 로그인 페이지 //////////
