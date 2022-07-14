@@ -42,6 +42,7 @@ button { font-family: 'Noto Serif KR', serif;  }
     color: pink !important;
 }
 
+
 /*index 페이지*/
 .mTitle { font-size: 2.5rem;}
 
@@ -71,12 +72,10 @@ button { font-family: 'Noto Serif KR', serif;  }
     justify-content: center;
     align-items: center;
 }
-
-#review_btn {
-    padding: 10px;
-    background-color: pink;
-    color: #fff !important;
-    border-color: transparent;
+.mbtn-l { margin-right: 10px;}
+@media all and (max-width: 450px) {
+    .mbtn-l { margin-right: 0px; }
+    .mbtn-r { margin-top:20px;}
 }
 
 
@@ -89,13 +88,29 @@ button { font-family: 'Noto Serif KR', serif;  }
     top: 50%;
     transform: translate(-50%, -50%);
 }
+.button.is-ranunculus {
+        background-color: #d5a2a1;
+        border-color: transparent;
+        color: #fff !important;
+    }
+
+.button.is-ranunculus.is-outlined {
+    background-color: transparent;
+    border-color: #d5a2a1;
+    color: #d5a2a1 !important;
+}
+.help {
+    color: gray;
+}
 
 
 /*reservation 페이지*/
-
+.section2 {
+    padding-bottom:30px;
+    background-color:#fbd3cb;
+}
 
 /*review 페이지*/
-
 #weather {
     display: flex;
     flex-direction: column;
@@ -105,3 +120,18 @@ button { font-family: 'Noto Serif KR', serif;  }
     font-weight: bold;
 }
 
+#review_btn {
+    padding: 10px;
+    background-color: #d5a2a1;
+    color: #fff !important;
+    border-color: transparent;
+    margin-left: auto;
+    display: block;
+}
+
+.cards-box {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom:30px;
+    background-color:#fbd3cb;
+}
