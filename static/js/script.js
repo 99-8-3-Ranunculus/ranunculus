@@ -114,16 +114,17 @@ function show_review() {
                 let nickName = rows[i]['nickName']
                 let content = rows[i]['content']
 
-                let temp_html = `    
-                                <div class="card-content">
-                                    <p id="card_title" class="title">
-                                        “${content}”
-                                    </p>
-                                    <p id="card_subtitle" class="subtitle">
-                                        - ${nickName}
-                                    </p>
-                                </div>
-                                <hr>
+                let temp_html = `
+                                <div id="review_contents" class="card">
+                                    <div class="card-content">
+                                        <p id="card_title" class="title">
+                                            “${content}”
+                                        </p>
+                                        <p id="card_subtitle" class="subtitle">
+                                            - ${nickName}
+                                        </p>
+                                    </div>
+                                </div><br>  
                                 `;
                 $('#review_contents').append(temp_html)
             }
