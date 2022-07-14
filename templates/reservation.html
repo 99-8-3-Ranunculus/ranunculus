@@ -5,6 +5,10 @@
 
 
         <style>
+            .section2 {
+                margin-bottom: 200px;
+            }
+
             .field-body .field .field {
                 margin: 10px 0 10px 0;
             }
@@ -17,6 +21,8 @@
                 text-align: center;
                 font-size: 30px;
                 margin: 25px 0px 40px 0px;
+                color: #d5a2a1;
+                font-weight: bold;
             }
 
             .level.is-mobile .level-item:not(.is-narrow) {
@@ -24,6 +30,7 @@
                 margin-top: 20px;
                 font-weight: bold;
                 font-size: 19px;
+                background-color: #d5a2a1;
             }
 
             .button {
@@ -43,8 +50,6 @@
         </style>
 
         <script>
-
-
             $(document).ready(function () {
                 show_order();
             });
@@ -107,10 +112,7 @@
                     minDate: 0
                 });
             });
-
-
         </script>
-
 
         <section class="section">
             <div class="container">
@@ -146,7 +148,8 @@
                                             </p>
                                             <div class="control has-icons-right" style="width:100%">
                                                 <input class="input" id="date" type="text" placeholder="날짜">
-                                                <span class="icon is-small is-right"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                                                <span class="icon is-small is-right"><i class="fa fa-calendar-check-o"
+                                                                                        aria-hidden="true"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +167,7 @@
                                             </p>
                                             <div class="control is-expanded">
                                                 <div class="select" id="time" type="text" placeholder="이름">
-                                                    <select style="width: 380px; border-radius: 0 4px 4px 0">
+                                                    <select style="width: 376px; border-radius: 0 4px 4px 0; color:#c2c2c2";>
                                                         <option selected>-- 예약시간 --</option>
                                                         <option value="10-12">10:00-12:00</option>
                                                         <option value="12-14">12:00-14:00</option>
@@ -213,8 +216,8 @@
             </div>
         </section>
 
-        <section style="margin-bottom: 100px">
-            <table class="table" style="max-width: 480px; margin:auto">
+        <section class="section2">
+            <table class="table" style="width: 470px; margin:auto">
                 <thead>
                 <tr>
                     <th scope="col">이름</th>
@@ -222,7 +225,7 @@
                     <th scope="col">시간</th>
                     <th scope="col">좋아하는 향</th>
                 </tr>
-                </thead>
+                </thead>s
                 <tbody id="order-box">
                 </tbody>
             </table>
