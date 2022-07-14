@@ -164,3 +164,7 @@ button { font-family: 'Noto Serif KR', serif;  }
 #content {
     width: 100%;
 }
+
+.review-wrap {
+    background-color: #fbd3cb;
+}
